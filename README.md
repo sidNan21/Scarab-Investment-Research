@@ -5,7 +5,7 @@
 A Dash based web-application designed to provide novice investors a "one-stop-shop" for researching popular equities
 
 + Provides timeseries data of price over the lifetime of the equity using Plotly.py
-+ Supplies relevant statistics to the equity being researched via the IEX API
++ Supplies relevant statistics to the equity being researched via the IEX and Quandl APIs
 + Showcases up-to-date headlines on researched companies using News API
 + Highlights popular and commonly traded equities based on statistically analyzed market movements
 + Allows users to take notes and save articles during research
@@ -16,6 +16,9 @@ The higher level technologies used are:
 
 + [Plotly](https://plot.ly) for interactive data data visualization
 + [Dash](https://plot.ly/products/dash/) as a framwork for creating the web application
++ [News API](https://newsapi.org) provides access to relevant news for each equity
++ [IEX API](https://iextrading.com/developer/docs/) provides access to financial data
++ [Quandl API](https://www.quandl.com/tools/api) provides access to financial data
 
 ## Running the web applet
 
