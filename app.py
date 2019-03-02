@@ -105,7 +105,7 @@ app.layout = html.Div([
 
     #middle column
     html.Div([
-        html.H1('Stock Tickers'),
+        html.H1('Ethan: Your Investment Advisor'),
         dcc.Dropdown(
             id='dropdown',
             options=LABELS,
@@ -119,8 +119,8 @@ app.layout = html.Div([
                     ],
                     style={
                         "height":"33%",
-                        "backgroundColor": "#18252E",
-                        "color": "white",
+                        "backgroundColor": "#1a2d46",
+                        "color": "#1a2d46",
                         "fontSize": "12",
                         "padding":"10px 10px 0px 10px",
                         "marginTop":"5",
@@ -138,16 +138,16 @@ app.layout = html.Div([
                 html.H1('Top Movers', id='mover-header'),
                 html.Div(
                     [
-                        html.Button(id='ee-button', className = 'fullwidth', n_clicks=0, children='ee'),
-                        html.Button(id='eee-button', className = 'fullwidth', n_clicks=0, children='eee'),
-                        html.Button(id='a-button', className = 'fullwidth', n_clicks=0, children='ee'),
-                        html.Button(id='aa-button', className = 'fullwidth', n_clicks=0, children='ee'),
-                        html.Button(id='b-button', className = 'fullwidth', n_clicks=0, children='ee'),
-                        html.Button(id='bb-button', className = 'fullwidth', n_clicks=0, children='ee'),
-                        html.Button(id='c-button', className = 'fullwidth', n_clicks=0, children='ee'),
-                        html.Button(id='cc-button', className = 'fullwidth', n_clicks=0, children='ee'),
-                        html.Button(id='d-button', className = 'fullwidth', n_clicks=0, children='ee'),
-                        html.Button(id='dd-button', className = 'fullwidth', n_clicks=0, children='ee'),
+                        html.Button(id='button-1', className='fullwidth', n_clicks=0, children='BPTH'),
+                        html.Button(id='button-2', className='fullwidth', n_clicks=0, children='CIFS'),
+                        html.Button(id='button-3', className='fullwidth', n_clicks=0, children='PBYI'),
+                        html.Button(id='button-4', className='fullwidth', n_clicks=0, children='GSB'),
+                        html.Button(id='button-5', className='fullwidth', n_clicks=0, children='LXRX'),
+                        html.Button(id='button-6', className='fullwidth', n_clicks=0, children='IMGN'),
+                        html.Button(id='button-7', className='fullwidth', n_clicks=0, children='XON'),
+                        html.Button(id='button-8', className='fullwidth', n_clicks=0, children='NTNX'),
+                        html.Button(id='button-9', className='fullwidth', n_clicks=0, children='MAXR'),
+                        html.Button(id='button-10', className='fullwidth', n_clicks=0, children='IMV'),
                     ],)
             ],
             style={
@@ -182,17 +182,24 @@ def update_graph(selected_dropdown_value):
             'margin': {
                 'l': 50,
                 'r': 50,
-                'b': 50,
+                'b': 70,
                 't': 50
             },
             'title': 'Stock Prices for ' + selected_dropdown_value,
+            'font': {
+                "color": "#45df7e"
+            },
             'xaxis': {
                 'title':'Time',
+                "color": "#45df7e"
                 #'range': ['2019-02-25', '2019-03-01']
             },
             'yaxis': {
-                'title':'Price (USD)'
-            }
+                'title':'Price (USD)',
+                "color": "#45df7e"
+            },
+            'plot_bgcolor': '#1a2d46',
+            'paper_bgcolor': '#1a2d46',
         }
     }
 
