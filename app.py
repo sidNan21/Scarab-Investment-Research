@@ -89,8 +89,8 @@ app.layout = html.Div([
     html.Div([
         html.Div(
             [
-                html.Button(id='save-button', n_clicks=0, children='Saved'),
-                html.Button(id='note-button', n_clicks=0, children='Notes'),
+                html.Button(id='save-button', className='fullwidth', n_clicks=0, children='Saved'),
+                html.Button(id='note-button', className='fullwidth', n_clicks=0, children='Notes'),
             ],
             style={
                 "backgroundColor": "#1a2d46",
@@ -138,8 +138,16 @@ app.layout = html.Div([
                 html.H1('Top Movers', id='mover-header'),
                 html.Div(
                     [
-                        html.Button(id='ee-button', n_clicks=0, children='ee'),
-                        html.Button(id='eee-button', n_clicks=0, children='eee')
+                        html.Button(id='ee-button', className = 'fullwidth', n_clicks=0, children='ee'),
+                        html.Button(id='eee-button', className = 'fullwidth', n_clicks=0, children='eee'),
+                        html.Button(id='a-button', className = 'fullwidth', n_clicks=0, children='ee'),
+                        html.Button(id='aa-button', className = 'fullwidth', n_clicks=0, children='ee'),
+                        html.Button(id='b-button', className = 'fullwidth', n_clicks=0, children='ee'),
+                        html.Button(id='bb-button', className = 'fullwidth', n_clicks=0, children='ee'),
+                        html.Button(id='c-button', className = 'fullwidth', n_clicks=0, children='ee'),
+                        html.Button(id='cc-button', className = 'fullwidth', n_clicks=0, children='ee'),
+                        html.Button(id='d-button', className = 'fullwidth', n_clicks=0, children='ee'),
+                        html.Button(id='dd-button', className = 'fullwidth', n_clicks=0, children='ee'),
                     ],)
             ],
             style={
