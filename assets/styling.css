@@ -2,3 +2,7 @@ button.fullwidth {
   width: 100%;
   display: block
 }
+
+body, html, .inner, .outer {
+  height: 100%;
+}

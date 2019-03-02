@@ -89,8 +89,8 @@ app.layout = html.Div([
     html.Div([
         html.Div(
             [
-                html.Button(id='save-button', className='fullwidth', n_clicks=0, children='Saved'),
-                html.Button(id='note-button', className='fullwidth', n_clicks=0, children='Notes'),
+                html.Button(id='save-button', n_clicks=0, children='Saved'),
+                html.Button(id='note-button', n_clicks=0, children='Notes'),
             ],
             style={
                 "backgroundColor": "#1a2d46",
@@ -100,7 +100,7 @@ app.layout = html.Div([
             },
         ),
         ],
-        style={'width': '25%', 'display': 'inline-block', 'height': '100%', 'vertical-align': 'top'}
+        style={'width': '25%', 'display': 'inline-block', 'height': '1000px', 'vertical-align': 'top'}
         ),
 
     #middle column
