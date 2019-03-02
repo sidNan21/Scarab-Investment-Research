@@ -15,7 +15,7 @@ external_css = [
 ]
 
 #Define Dash App
-app = dash.Dash(__name__, external_css=external_css)
+app = dash.Dash(__name__='Scarab', external_css=external_css)
 server = app.server
 
 for css in external_css:
