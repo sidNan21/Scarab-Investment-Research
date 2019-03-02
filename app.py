@@ -1,19 +1,11 @@
+'''Investment Research Web-App'''
 import dash
+import flask
 import dash_core_components as dcc
 import dash_html_components as html
 
-import json
-import base64
-import datetime
 import requests
-
-import flask
 import pandas as pd
-
-
-#Define Dash App
-server = flask.Flask(__name__)
-app = dash.Dash(__name__, server=server)
 
 external_css = [
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
@@ -21,6 +13,10 @@ external_css = [
     "https://cdn.rawgit.com/amadoukane96/8f29daabc5cacb0b7e77707fc1956373/raw/854b1dc5d8b25cd2c36002e1e4f598f5f4ebeee3/test.css",
     "https://use.fontawesome.com/releases/v5.2.0/css/all.css"
 ]
+
+#Define Dash App
+app = dash.Dash(__name__, external_css=external_css)
+server = app.server
 
 for css in external_css:
     app.css.append_css({"external_url": css})
@@ -62,10 +58,6 @@ def generate_news_table(dataframe, max_rows=10):
                 ),
                 style={"height": "150px", "overflowY": "scroll"},
             ),
-            html.P(
-                "Last update : " + datetime.datetime.now().strftime("%H:%M:%S"),
-                style={"fontSize": "11", "marginTop": "4", "color": "#45df7e"},
-            ),
         ],
         style={"height": "100%"},
     )
@@ -106,7 +98,7 @@ app.layout = html.Div([
 
     #middle column
     html.Div([
-        html.H1('Ethan: Your Investment Advisor'),
+        html.H1('Scarab: Smart Investments'),
         dcc.Dropdown(
             id='dropdown',
             options=LABELS,
@@ -133,7 +125,6 @@ app.layout = html.Div([
 
     #right column
     html.Div([
-
         html.Div(
             [
                 html.H1('Top Movers', id='mover-header'),
