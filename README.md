@@ -34,6 +34,8 @@ The following libraries (and their dependencies) will need to be installed if no
 + requests `pip install requests`
 + pandas `pip install pandas`
 
+The requirements can be installed all at once by running: `pip install -r requirements.txt`
+
 In addition, you will need to obtain and add a News API key in `app.py` in the `get_news()` and `update_news()` methods. NewsAPI is linked above in the "References" section of this document.
 
 You can run the Dash app locally by executing `python3 app.py`. Make sure to have 'SP500_price.csv' and 'constituents.csv' in the same directory as the applet.
