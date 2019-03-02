@@ -81,8 +81,9 @@ app.layout = html.Div([
     html.Div([
         html.Div(
             [
-                html.Button(id='save-button', className='fullwidth', n_clicks=0, children='Saved'),
-                html.Button(id='note-button', className='fullwidth', n_clicks=0, children='Notes'),
+                html.Button(id='save-button', n_clicks=0, children='Saved'),
+                html.Button(id='note-button', n_clicks=0, children='Notes', style={'float': 'right'}),
+                dcc.Input(id='my-id', className='noteBox', value='Enter Notes:', type='text'),
             ],
             style={
                 "backgroundColor": "#1a2d46",
@@ -92,7 +93,7 @@ app.layout = html.Div([
             },
         ),
         ],
-        style={'width': '25%', 'display': 'inline-block', 'height': '100%', 'vertical-align': 'top'}
+        style={'width': '25%', 'display': 'inline-block', 'height': '1000px', 'vertical-align': 'top'}
         ),
 
     #middle column
@@ -119,7 +120,7 @@ app.layout = html.Div([
                         "marginBottom":"0"
                     }),
         ],
-        style={'width': '50%', 'display': 'inline-block', 'vertical-align': 'top', 'height': '100%'}
+        style={'width': '50%', 'display': 'inline-block', 'vertical-align': 'top', 'height': '1000px'}
         ),
 
     #right column
@@ -149,7 +150,7 @@ app.layout = html.Div([
             },
         )
         ],
-        style={'width': '25%', 'display': 'inline-block', 'float': 'right', 'height': '100%', 'vertical-align': 'top'},
+        style={'width': '25%', 'display': 'inline-block', 'float': 'right', 'height': '1000px', 'vertical-align': 'top'},
         )
     ]
 )
@@ -194,6 +195,7 @@ def update_graph(selected_dropdown_value):
         }
     }
 
+#callback for interacting with news
 @app.callback(Output('news', component_property='children'),
               [Input('dropdown', 'value')])
 
@@ -207,6 +209,9 @@ def update_news(selected_dropdown_value):
     df = pd.DataFrame(json_data)
     df = pd.DataFrame(df[["title","url"]])
     return generate_news_table(df)
+
+def update_output_div(input_value):
+    return 'You\'ve entered "{}"'.format(input_value)
 
 if __name__ == '__main__':
     app.run_server(debug=True)

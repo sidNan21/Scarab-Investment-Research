@@ -1,4 +1,13 @@
 button.fullwidth {
   width: 100%;
-  display: block
+  display: block;
+}
+
+body, html, .inner, .outer {
+  height: 100%;
+}
+
+input.noteBox {
+  height: 25%;
+  width: 100%;
 }
