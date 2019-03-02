@@ -1,23 +1,19 @@
-# -*- coding: utf-8 -*-
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+
 import json
 import base64
 import datetime
 import requests
 
-import pandas as pd
 import flask
-import dash
-from dash.dependencies import Input, Output, State
-import dash_core_components as dcc
-import dash_html_components as html
-import plotly.plotly as py
-import plotly.graph_objs as go
-from plotly import tools
+import pandas as pd
 
 
+#Define Dash App
 server = flask.Flask(__name__)
 app = dash.Dash(__name__, server=server)
-
 
 external_css = [
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
@@ -29,7 +25,6 @@ external_css = [
 for css in external_css:
     app.css.append_css({"external_url": css})
 
-# retrieve and displays news
 def update_news():
     r = requests.get('https://newsapi.org/v2/top-headlines?sources=financial-times&apiKey=***REMOVED***')
     json_data = r.json()["articles"]
@@ -73,21 +68,51 @@ def generate_news_table(dataframe, max_rows=10):
 
 
 
-app.layout = html.Div(
-    [
-    html.Div(children=[
-
-        html.Div([
-            html.H1("memes")
-        ], className="column right"),
-        html.Div([
-            html.H1("memes2")
-        ], className="column left"),
-        # center div
-        # left Div
+app.layout = html.Div([
+    #left column
+    html.Div([
         html.Div(
             [
-                html.Div([
+                html.Button(id='save-button', n_clicks=0, children='Saved'),
+                html.Button(id='note-button', n_clicks=0, children='Notes'),
+            ],
+            style={
+                "backgroundColor": "#1a2d46",
+                "padding": "10",
+                "margin": "0",
+                "height":"100%"
+            },
+        ),
+        ],
+        style={'width': '25%', 'display': 'inline-block', 'height': '100%', 'vertical-align': 'top'}
+        ),
+
+    #middle column
+    html.Div([
+        dcc.Dropdown(
+            options=[
+                {'label': 'New York City', 'value': 'NYC'},
+                {'label': 'Montreal', 'value': 'MTL'},
+                {'label': 'San Francisco', 'value': 'SF'}
+                ],
+            value=['MTL', 'SF'],
+            multi=True
+        ),
+
+        dcc.Graph(
+            id='example-graph3',
+            figure={
+                'data': [
+                    {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar'}
+                ],
+                'layout': {
+                    'title': 'Dash Data Visualization',
+                    'height':250
+                    }
+                }
+            ),
+
+        html.Div([
                     html.P('Headlines',style={"fontSize":"13","color":"#45df7e"}),
                     html.Div(update_news(),id="news")
                     ],
@@ -100,20 +125,35 @@ app.layout = html.Div(
                         "marginTop":"5",
                         "marginBottom":"0"
                     }),
+        ],
+        style={'width': '50%', 'display': 'inline-block', 'vertical-align': 'top', 'height': '100%'}
+        ),
+
+    #right column
+    html.Div([
+
+        html.Div(
+            [
+                html.H1('Top Movers', id='mover-header'),
+                html.Div(
+                    [
+                        html.Button(id='ee-button', n_clicks=0, children='ee'),
+                        html.Button(id='eee-button', n_clicks=0, children='eee')
+                    ],)
             ],
-            className="three columns",
             style={
                 "backgroundColor": "#1a2d46",
                 "padding": "10",
                 "margin": "0",
-                "height":"100%"
+                "height":"100%",
             },
-        ),
+        )
+        ],
+        style={'width': '25%', 'display': 'inline-block', 'float': 'right', 'height': '100%', 'vertical-align': 'top'},
+        )
+    ]
+)
 
-    ],
-    className="row",
-    style={"padding": "0", "height": "100vh", "backgroundColor": "#1a2d46"},
-)])
 
-if __name__ == "__main__":
-    app.run_server(debug=True, threaded=True)
+if __name__ == '__main__':
+    app.run_server(debug=True)
