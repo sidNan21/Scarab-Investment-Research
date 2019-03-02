@@ -105,7 +105,7 @@ app.layout = html.Div([
 
     #middle column
     html.Div([
-        html.H1('Ethan: Your Investment Advisor'),
+        html.H1('Scarab: Smart Investments'),
         dcc.Dropdown(
             id='dropdown',
             options=LABELS,
