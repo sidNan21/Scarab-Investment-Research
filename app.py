@@ -25,8 +25,12 @@ external_css = [
 for css in external_css:
     app.css.append_css({"external_url": css})
 
-def update_news():
-    r = requests.get('https://newsapi.org/v2/top-headlines?sources=financial-times&apiKey=***REMOVED***')
+def get_news(company):
+    url = ('https://newsapi.org/v2/everything?'
+       'q=' + company + '&'
+       'language=en&'
+       'apiKey=***REMOVED***')
+    r = requests.get(url)
     json_data = r.json()["articles"]
     df = pd.DataFrame(json_data)
     df = pd.DataFrame(df[["title","url"]])
@@ -66,7 +70,19 @@ def generate_news_table(dataframe, max_rows=10):
         style={"height": "100%"},
     )
 
+DATAFRAME = pd.read_csv('SP500_price.csv')
+NAMES = pd.read_csv('constituents.csv')['Name']
+LABELS = DATAFRAME.columns.values.tolist()[1:]
 
+def label_maker(LABELS, NAMES):
+    options = []
+    map1 = {}
+    for i in range(0, len(LABELS)):
+        options.append({'label': NAMES[i], 'value': NAMES[i]})
+        map1[NAMES[i]] = LABELS[i]
+    return options, map1
+
+LABELS, MAP = label_maker(LABELS, NAMES)
 
 app.layout = html.Div([
     #left column
@@ -89,32 +105,17 @@ app.layout = html.Div([
 
     #middle column
     html.Div([
+        html.H1('Stock Tickers'),
         dcc.Dropdown(
-            options=[
-                {'label': 'New York City', 'value': 'NYC'},
-                {'label': 'Montreal', 'value': 'MTL'},
-                {'label': 'San Francisco', 'value': 'SF'}
-                ],
-            value=['MTL', 'SF'],
-            multi=True
+            id='dropdown',
+            options=LABELS,
+            value='Advanced Micro Devices Inc'
         ),
-
-        dcc.Graph(
-            id='example-graph3',
-            figure={
-                'data': [
-                    {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar'}
-                ],
-                'layout': {
-                    'title': 'Dash Data Visualization',
-                    'height':250
-                    }
-                }
-            ),
+        dcc.Graph(id='prices'),
 
         html.Div([
                     html.P('Headlines',style={"fontSize":"13","color":"#45df7e"}),
-                    html.Div(update_news(),id="news")
+                    html.Div(get_news('Advanced Micro Devices Inc'), id="news")
                     ],
                     style={
                         "height":"33%",
@@ -154,6 +155,52 @@ app.layout = html.Div([
     ]
 )
 
+from dash.dependencies import Input, Output
+@app.callback(Output('prices', 'figure'),
+              [Input('dropdown', 'value')])
+
+def update_graph(selected_dropdown_value):
+    dff = DATAFRAME[MAP[selected_dropdown_value]]
+    return {
+        'data': [{
+            'x': DATAFRAME['date'],
+            'y': dff,
+            'line': {
+                'width': 3,
+                'shape': 'spline'
+            }
+        }],
+        'layout': {
+            'margin': {
+                'l': 50,
+                'r': 50,
+                'b': 50,
+                't': 50
+            },
+            'title': 'Stock Prices for ' + selected_dropdown_value,
+            'xaxis': {
+                'title':'Time',
+                #'range': ['2019-02-25', '2019-03-01']
+            },
+            'yaxis': {
+                'title':'Price (USD)'
+            }
+        }
+    }
+
+@app.callback(Output('news', component_property='children'),
+              [Input('dropdown', 'value')])
+
+def update_news(selected_dropdown_value):
+    url = ('https://newsapi.org/v2/everything?'
+       'q=' + selected_dropdown_value + '&'
+       'language=en&'
+       'apiKey=***REMOVED***')
+    r = requests.get(url)
+    json_data = r.json()["articles"]
+    df = pd.DataFrame(json_data)
+    df = pd.DataFrame(df[["title","url"]])
+    return generate_news_table(df)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
