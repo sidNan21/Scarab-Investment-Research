@@ -1,15 +1,11 @@
+'''Investment Research Web-App'''
 import dash
+import flask
 import dash_core_components as dcc
 import dash_html_components as html
 
-import json
-import base64
-import datetime
 import requests
-
-import flask
 import pandas as pd
-
 
 #Define Dash App
 server = flask.Flask(__name__)
@@ -61,10 +57,6 @@ def generate_news_table(dataframe, max_rows=10):
                     ]
                 ),
                 style={"height": "150px", "overflowY": "scroll"},
-            ),
-            html.P(
-                "Last update : " + datetime.datetime.now().strftime("%H:%M:%S"),
-                style={"fontSize": "11", "marginTop": "4", "color": "#45df7e"},
             ),
         ],
         style={"height": "100%"},
@@ -132,7 +124,6 @@ app.layout = html.Div([
 
     #right column
     html.Div([
-
         html.Div(
             [
                 html.H1('Top Movers', id='mover-header'),
