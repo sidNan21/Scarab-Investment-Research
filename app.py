@@ -187,15 +187,21 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
 
                 #This is the first div for the regression
                 html.Div([
+                    html.P('Scarab: Linear Regression', className='regression', style={
+                        "color":"#45df7e"
+                    }),
                     html.P(regressionText(1), className='regression')
-                ], style={
+                ], className='regression', style={
                     'vertical-align': 'middle'
                 }),
 
                 #This is the second div for the regression
                 html.Div([
+                    html.P('Scarab: Random Tree Regression', className='regression', style={
+                        "color":"#45df7e"
+                    }),
                     html.P(regressionText(2), className='regression')
-                ], style={
+                ], className='regression', style={
                     'vertical-align': 'middle'
                 }),
                 html.Article(id='a10', children="Scarab's Linear Model Prediction: ", style={

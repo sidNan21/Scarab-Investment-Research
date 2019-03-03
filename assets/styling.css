@@ -8,12 +8,18 @@ input.noteBox {
   width: 100%;
 }
 
-p.regression {
+div.regression {
   border-radius: 5px;
   border: 1px solid rgb(233, 233, 233);
   padding: 10px;
   width: 319px;
-  height: 150px;
+  height: 200px;
   color: white;
   vertical-align: middle;
+}
+
+p.regression {
+  color: white;
+  vertical-align: middle;
+  text-align: center;
 }
