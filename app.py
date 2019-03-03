@@ -114,7 +114,11 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
                     'color': 'white',
                     'fontSize': 16
                 }),
-                dcc.Input(id='my-id', className='noteBox', value='Enter Notes:', type='text'),
+                dcc.Textarea(rows='20', cols='45', id='my-id', className='noteBox', placeholder='Enter Notes:',
+                    style={
+                        'height': '500px',
+                        'marginTop': '5'
+                    }),
             ],
             style={
                 "backgroundColor": "#1a2d46",
