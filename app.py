@@ -119,7 +119,7 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
                 }),
                 dcc.Textarea(rows='20', cols='45', id='my-id', className='noteBox', placeholder='Enter Notes:',
                     style={
-                        'height': '500px',
+                        'height': '475px',
                         'marginTop': '5'
                     }),
             ],
@@ -148,7 +148,7 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
         dcc.Graph(id='prices'),
 
         html.Div([
-                    html.P('Headlines',style={"fontSize":"13","color":"#45df7e"}),
+                    html.P('Headlines',style={"fontSize":"16","color":"#45df7e"}),
                     html.Div(get_news('Advanced Micro Devices Inc'), id="news", style={
                         "height": "100%"
                     })
