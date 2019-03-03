@@ -173,7 +173,7 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
     html.Div([
         html.Div(
             [
-                html.H1(children='Recommended Research', id='mover-header', style={
+                html.H1(children="Scarab's Predictions", id='mover-header', style={
                 'textAlign': 'center',
                 'color': 'white',
                 'fontSize': 24

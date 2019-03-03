@@ -20,6 +20,8 @@ The higher level technologies used are:
 + [IEX API](https://iextrading.com/developer/docs/) provides access to financial data
 + [scikit-learn](https://scikit-learn.org/stable/) for machine learning in Python
 
+Partially inspired by the [Dash web trader example](https://github.com/plotly/dash-web-trader)
+
 ## Running the web applet
 
 The following libraries (and their dependencies) will need to be installed if not already present:
