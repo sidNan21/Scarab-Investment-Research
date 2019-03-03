@@ -76,13 +76,11 @@ def label_maker(LABELS, NAMES):
 
 LABELS, MAP = label_maker(LABELS, NAMES)
 
-app.layout = html.Div([
+app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
     #left column
     html.Div([
         html.Div(
             [
-                html.Button(id='save-button', n_clicks=0, children='Saved'),
-                html.Button(id='note-button', n_clicks=0, children='Notes', style={'float': 'right'}),
                 dcc.Input(id='my-id', className='noteBox', value='Enter Notes:', type='text'),
             ],
             style={
@@ -98,7 +96,10 @@ app.layout = html.Div([
 
     #middle column
     html.Div([
-        html.H1('Scarab: Smart Investments'),
+        html.H1(children='Scarab: Smart Investments', style={
+            'textAlign': 'center',
+            'color': 'white'
+        }),
         dcc.Dropdown(
             id='dropdown',
             options=LABELS,
@@ -127,7 +128,10 @@ app.layout = html.Div([
     html.Div([
         html.Div(
             [
-                html.H1('Top Movers', id='mover-header'),
+                html.H1(children='Top Movers', id='mover-header', style={
+                'textAlign': 'center',
+                'color': 'white'
+                }),
                 html.Div(
                     [
                         html.Button(id='button-1', className='fullwidth', n_clicks=0, children='BPTH'),
@@ -140,6 +144,14 @@ app.layout = html.Div([
                         html.Button(id='button-8', className='fullwidth', n_clicks=0, children='NTNX'),
                         html.Button(id='button-9', className='fullwidth', n_clicks=0, children='MAXR'),
                         html.Button(id='button-10', className='fullwidth', n_clicks=0, children='IMV'),
+                        html.Button(id='button-11', className='fullwidth', n_clicks=0, children='AAPL'),
+                        html.Button(id='button-12', className='fullwidth', n_clicks=0, children='GOOG'),
+                        html.Button(id='button-13', className='fullwidth', n_clicks=0, children='TSLA'),
+                        html.Button(id='button-14', className='fullwidth', n_clicks=0, children='BRK.B'),
+                        html.Button(id='button-15', className='fullwidth', n_clicks=0, children='MU'),
+                        html.Button(id='button-16', className='fullwidth', n_clicks=0, children='INTC'),
+                        html.Button(id='button-17', className='fullwidth', n_clicks=0, children='NVDA'),
+                        html.Button(id='button-18', className='fullwidth', n_clicks=0, children='AMD'),
                     ],)
             ],
             style={
