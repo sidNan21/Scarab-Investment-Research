@@ -153,13 +153,13 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
         dcc.Dropdown(
             id='dropdown',
             options=LABELS,
-            value='Micron Technology'
+            value='Aetna Inc'
         ),
         dcc.Graph(id='prices'),
 
         html.Div([
                     html.P('Headlines', style={"fontSize":"16","color":"#45df7e"}),
-                    html.Div(get_news('Micron Technology'), id="news", style={
+                    html.Div(get_news('Aetna Inc'), id="news", style={
                         "height": "100%"
                     })
                     ],
