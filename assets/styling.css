@@ -3,10 +3,6 @@ button.fullwidth {
   display: block;
 }
 
-body, html, .inner, .outer {
-  height: 100%;
-}
-
 input.noteBox {
   height: 25%;
   width: 100%;

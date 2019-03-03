@@ -146,10 +146,11 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
 
         html.Div([
                     html.P('Headlines',style={"fontSize":"13","color":"#45df7e"}),
-                    html.Div(get_news('Advanced Micro Devices Inc'), id="news")
+                    html.Div(get_news('Advanced Micro Devices Inc'), id="news", style={
+                        "height": "100%"
+                    })
                     ],
                     style={
-                        "height":"33%",
                         "backgroundColor": "#1a2d46",
                         "color": "#1a2d46",
                         "fontSize": "12",
@@ -158,7 +159,7 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
                         "marginBottom":"0"
                     }),
         ],
-        style={'width': '50%', 'display': 'inline-block', 'vertical-align': 'top', 'height': '1000px'}
+        style={'width': '50%', 'display': 'inline-block', 'vertical-align': 'top', 'height': '1050px'}
         ),
 
     #right column
