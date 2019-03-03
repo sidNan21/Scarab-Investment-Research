@@ -68,6 +68,10 @@ def generate_news_table(dataframe, max_rows=10):
 DATAFRAME = pd.read_csv('SP500_price.csv')
 NAMES = pd.read_csv('constituents.csv')['Name']
 LABELS = DATAFRAME.columns.values.tolist()[1:]
+REGTEXT = open('regressionText.txt', 'r').readlines()
+
+def regressionText(line):
+    return REGTEXT[line-1]
 
 def label_maker(LABELS, NAMES):
     options = []
@@ -119,7 +123,7 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
                 }),
                 dcc.Textarea(rows='20', cols='45', id='my-id', className='noteBox', placeholder='Enter Notes:',
                     style={
-                        'height': '475px',
+                        'height': '500px',
                         'marginTop': '5'
                     }),
             ],
@@ -131,7 +135,7 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
             },
         ),
         ],
-        style={'width': '25%', 'display': 'inline-block', 'height': '800px', 'vertical-align': 'top'}
+        style={'width': '25%', 'display': 'inline-block', 'height': '900px', 'vertical-align': 'top'}
         ),
 
     #middle column
@@ -162,7 +166,7 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
                         "marginBottom":"0"
                     }),
         ],
-        style={'width': '50%', 'display': 'inline-block', 'vertical-align': 'top', 'height': '850px'}
+        style={'width': '50%', 'display': 'inline-block', 'vertical-align': 'top', 'height': '950px'}
         ),
 
     #right column
@@ -174,6 +178,7 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
                 'color': 'white',
                 'fontSize': 24
                 }),
+
                 html.Div(
                     [
                         html.Button(id='button-1', className='fullwidth', n_clicks=0, children='COF'),
@@ -226,7 +231,7 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
             },
         )
         ],
-        style={'width': '25%', 'display': 'inline-block', 'float': 'right', 'height': '800px', 'vertical-align': 'top'},
+        style={'width': '25%', 'display': 'inline-block', 'float': 'right', 'height': '925px', 'vertical-align': 'top'},
         )
     ]
 )
