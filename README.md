@@ -40,7 +40,7 @@ In addition, you will need to obtain and add a News API key in `app.py` in the `
 
 You can run the Dash app locally by executing `python3 app.py`. Make sure to have 'SP500_price.csv' and 'constituents.csv' in the same directory as the applet.
 
-A live deployment of the app can be found at URL
+A live deployment of the app can be found at http://scarab-investment-research.herokuapp.com
 
 ## Environment
 
