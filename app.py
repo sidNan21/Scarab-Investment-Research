@@ -49,6 +49,9 @@ def generate_news_table(dataframe, max_rows=10):
                                         dataframe.iloc[i]["title"],
                                         href=dataframe.iloc[i]["url"],
                                         target="_blank",
+                                        style={
+                                            "font-size": 16
+                                        }
                                     )
                                 )
                             ]
@@ -116,7 +119,7 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
                 }),
                 dcc.Textarea(rows='20', cols='45', id='my-id', className='noteBox', placeholder='Enter Notes:',
                     style={
-                        'height': '500px',
+                        'height': '475px',
                         'marginTop': '5'
                     }),
             ],
@@ -128,7 +131,7 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
             },
         ),
         ],
-        style={'width': '25%', 'display': 'inline-block', 'height': '1000px', 'vertical-align': 'top'}
+        style={'width': '25%', 'display': 'inline-block', 'height': '800px', 'vertical-align': 'top'}
         ),
 
     #middle column
@@ -145,8 +148,8 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
         dcc.Graph(id='prices'),
 
         html.Div([
-                    html.P('Headlines',style={"fontSize":"13","color":"#45df7e"}),
-                    html.Div(get_news('Capital One'), id="news", style={
+                    html.P('Headlines',style={"fontSize":"16","color":"#45df7e"}),
+                    html.Div(get_news('Advanced Micro Devices Inc'), id="news", style={
                         "height": "100%"
                     })
                     ],
@@ -159,7 +162,7 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
                         "marginBottom":"0"
                     }),
         ],
-        style={'width': '50%', 'display': 'inline-block', 'vertical-align': 'top', 'height': '1050px'}
+        style={'width': '50%', 'display': 'inline-block', 'vertical-align': 'top', 'height': '850px'}
         ),
 
     #right column
@@ -201,7 +204,7 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
             },
         )
         ],
-        style={'width': '25%', 'display': 'inline-block', 'float': 'right', 'height': '1000px', 'vertical-align': 'top'},
+        style={'width': '25%', 'display': 'inline-block', 'float': 'right', 'height': '800px', 'vertical-align': 'top'},
         )
     ]
 )
