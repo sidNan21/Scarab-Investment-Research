@@ -192,13 +192,6 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
                 ], style={
                     'vertical-align': 'middle'
                 }),
-
-                #This is the third div for the regression
-                html.Div([
-                    html.P(regressionText(3), className='regression')
-                ], style={
-                    'vertical-align': 'middle'
-                })
             ],
             style={
                 "backgroundColor": "#1a2d46",
