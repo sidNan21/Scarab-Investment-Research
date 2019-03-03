@@ -1,4 +1,4 @@
-# Scarab: Smarter Investment Research
+# Scarab: A Safer, Smarter, Investment Research Platform
 
 ## Description
 
