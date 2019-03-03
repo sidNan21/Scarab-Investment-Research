@@ -14,7 +14,7 @@ external_css = [
     "https://use.fontawesome.com/releases/v5.2.0/css/all.css"
 ]
 
-#Define Dash App
+# Define Dash App
 app = dash.Dash(__name__='Scarab', external_css=external_css)
 server = app.server
 
