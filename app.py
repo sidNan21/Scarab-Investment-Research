@@ -190,7 +190,14 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
                     html.P('Scarab: Linear Regression', className='regression', style={
                         "color":"#45df7e"
                     }),
-                    html.P(regressionText(1), className='regression')
+                    html.P(regressionText(1), className='regression', style={
+                        "color": "white"
+                    }),
+                    html.Article(id='a10', children="Scarab's Linear Model Prediction: ", style={
+                    'color': 'white',
+                    'fontWeight': 'bold',
+                    'fontSize': 16
+                }),
                 ], className='regression', style={
                     'vertical-align': 'middle'
                 }),
@@ -200,20 +207,17 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
                     html.P('Scarab: Random Tree Regression', className='regression', style={
                         "color":"#45df7e"
                     }),
-                    html.P(regressionText(2), className='regression')
-                ], className='regression', style={
-                    'vertical-align': 'middle'
-                }),
-                html.Article(id='a10', children="Scarab's Linear Model Prediction: ", style={
-                    'color': 'white',
-                    'fontWeight': 'bold',
-                    'fontSize': 16
-                }),
-                html.Article(id='a11', children="Scarab's Random Forest Prediction: ", style={
+                    html.P(regressionText(2), className='regression', style={
+                        'color': 'white'
+                    }),
+                    html.Article(id='a11', children="Scarab's Random Forest Prediction: ", style={
                     'color': 'white',
                     'fontWeight': 'bold',
                     'fontSize': 16
                 })
+                ], className='regression', style={
+                    'vertical-align': 'middle'
+                }),
             ],
             style={
                 "backgroundColor": "#1a2d46",
