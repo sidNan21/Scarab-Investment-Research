@@ -176,25 +176,47 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
                 }),
                 html.Div(
                     [
-                        html.Button(id='button-1', className='fullwidth', n_clicks=0, children='COF: Capital One Financial'),
-                        html.Button(id='button-2', className='fullwidth', n_clicks=0, children='MSFT: Microsoft Corp.'),
-                        html.Button(id='button-3', className='fullwidth', n_clicks=0, children='AAPL: Apple Inc.'),
-                        html.Button(id='button-4', className='fullwidth', n_clicks=0, children='AMZN: Amazon.com Inc.'),
-                        html.Button(id='button-5', className='fullwidth', n_clicks=0, children='GOOG: Alphabet Inc Class C'),
-                        html.Button(id='button-6', className='fullwidth', n_clicks=0, children='FB: Facebook, Inc.'),
-                        html.Button(id='button-7', className='fullwidth', n_clicks=0, children='INTC: Intel Corp.'),
-                        html.Button(id='button-8', className='fullwidth', n_clicks=0, children='CSCO: Cisco Systems'),
-                        html.Button(id='button-9', className='fullwidth', n_clicks=0, children='CMCSA: Comcast Corp.'),
-                        html.Button(id='button-10', className='fullwidth', n_clicks=0, children='PEP: PepsiCo Inc.'),
-                        html.Button(id='button-11', className='fullwidth', n_clicks=0, children='NFLX: Netflix Inc.'),
-                        html.Button(id='button-12', className='fullwidth', n_clicks=0, children='ADBE: Adobe Systems Inc.'),
-                        html.Button(id='button-13', className='fullwidth', n_clicks=0, children='AMGN: Amgen Inc.'),
-                        html.Button(id='button-14', className='fullwidth', n_clicks=0, children='SBUX: Starbucks Corp.'),
-                        html.Button(id='button-15', className='fullwidth', n_clicks=0, children='BRK.B: Berkshire Hathaway'),
-                        html.Button(id='button-16', className='fullwidth', n_clicks=0, children='MU: Micron Technologies'),
-                        html.Button(id='button-17', className='fullwidth', n_clicks=0, children='NVDA: Nvidia Corporation'),
-                        html.Button(id='button-18', className='fullwidth', n_clicks=0, children='ORCL: Oracle Corp.'),
-                    ],)
+                        html.Button(id='button-1', className='fullwidth', n_clicks=0, children='COF'),
+                        html.Button(id='button-2', className='fullwidth', n_clicks=0, children='MSFT'),
+                        html.Button(id='button-3', className='fullwidth', n_clicks=0, children='AAPL'),
+                        html.Button(id='button-4', className='fullwidth', n_clicks=0, children='AMZN'),
+                        html.Button(id='button-5', className='fullwidth', n_clicks=0, children='GOOG'),
+                        html.Button(id='button-6', className='fullwidth', n_clicks=0, children='FB'),
+                        html.Button(id='button-7', className='fullwidth', n_clicks=0, children='INTC'),
+                        html.Button(id='button-8', className='fullwidth', n_clicks=0, children='CSCO'),
+                        html.Button(id='button-9', className='fullwidth', n_clicks=0, children='CMCSA'),
+                        html.Button(id='button-10', className='fullwidth', n_clicks=0, children='PEP'),
+                        html.Button(id='button-11', className='fullwidth', n_clicks=0, children='NFLX'),
+                        html.Button(id='button-12', className='fullwidth', n_clicks=0, children='ADBE'),
+                        html.Button(id='button-13', className='fullwidth', n_clicks=0, children='AMGN'),
+                        html.Button(id='button-14', className='fullwidth', n_clicks=0, children='SBUX'),
+                        html.Button(id='button-15', className='fullwidth', n_clicks=0, children='BRK.B'),
+                        html.Button(id='button-16', className='fullwidth', n_clicks=0, children='MU'),
+                        html.Button(id='button-17', className='fullwidth', n_clicks=0, children='NVDA'),
+                        html.Button(id='button-18', className='fullwidth', n_clicks=0, children='DATA'),
+                    ],
+                ),
+
+                #This is the first div for the regression
+                html.Div([
+                    html.P(regressionText(1), className='regression')
+                ], style={
+                    'vertical-align': 'middle'
+                }),
+
+                #This is the second div for the regression
+                html.Div([
+                    html.P(regressionText(2), className='regression')
+                ], style={
+                    'vertical-align': 'middle'
+                }),
+
+                #This is the third div for the regression
+                html.Div([
+                    html.P(regressionText(3), className='regression')
+                ], style={
+                    'vertical-align': 'middle'
+                })
             ],
             style={
                 "backgroundColor": "#1a2d46",
