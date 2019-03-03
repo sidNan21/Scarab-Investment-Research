@@ -81,6 +81,39 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
     html.Div([
         html.Div(
             [
+                html.H1(children='Company Statistics', style={
+                    'textAlign': 'center',
+                    'color': 'white',
+                    'fontSize': 24
+                }),
+                html.Article(id='a1', children='Company Name: ', style={
+                    'color': 'white',
+                    'fontSize': 16
+                }),
+                html.Article(id='a2', children='Sector: ', style={
+                    'color': 'white',
+                    'fontSize': 16
+                }),
+                html.Article(id='a3', children='Market Cap: ', style={
+                    'color': 'white',
+                    'fontSize': 16
+                }),
+                html.Article(id='a6', children='Report Date: ', style={
+                    'color': 'white',
+                    'fontSize': 16
+                }),
+                html.Article(id='a7', children='Total Revenue: ', style={
+                    'color': 'white',
+                    'fontSize': 16
+                }),
+                html.Article(id='a8', children='Gross Profit: ', style={
+                    'color': 'white',
+                    'fontSize': 16
+                }),
+                html.Article(id='a9', children='Current Assets: ', style={
+                    'color': 'white',
+                    'fontSize': 16
+                }),
                 dcc.Input(id='my-id', className='noteBox', value='Enter Notes:', type='text'),
             ],
             style={
@@ -128,30 +161,31 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
     html.Div([
         html.Div(
             [
-                html.H1(children='Top Movers', id='mover-header', style={
+                html.H1(children='Recommended Research', id='mover-header', style={
                 'textAlign': 'center',
-                'color': 'white'
+                'color': 'white',
+                'fontSize': 24
                 }),
                 html.Div(
                     [
-                        html.Button(id='button-1', className='fullwidth', n_clicks=0, children='BPTH'),
-                        html.Button(id='button-2', className='fullwidth', n_clicks=0, children='CIFS'),
-                        html.Button(id='button-3', className='fullwidth', n_clicks=0, children='PBYI'),
-                        html.Button(id='button-4', className='fullwidth', n_clicks=0, children='GSB'),
-                        html.Button(id='button-5', className='fullwidth', n_clicks=0, children='LXRX'),
-                        html.Button(id='button-6', className='fullwidth', n_clicks=0, children='IMGN'),
-                        html.Button(id='button-7', className='fullwidth', n_clicks=0, children='XON'),
-                        html.Button(id='button-8', className='fullwidth', n_clicks=0, children='NTNX'),
-                        html.Button(id='button-9', className='fullwidth', n_clicks=0, children='MAXR'),
-                        html.Button(id='button-10', className='fullwidth', n_clicks=0, children='IMV'),
-                        html.Button(id='button-11', className='fullwidth', n_clicks=0, children='AAPL'),
-                        html.Button(id='button-12', className='fullwidth', n_clicks=0, children='GOOG'),
-                        html.Button(id='button-13', className='fullwidth', n_clicks=0, children='TSLA'),
-                        html.Button(id='button-14', className='fullwidth', n_clicks=0, children='BRK.B'),
-                        html.Button(id='button-15', className='fullwidth', n_clicks=0, children='MU'),
-                        html.Button(id='button-16', className='fullwidth', n_clicks=0, children='INTC'),
+                        html.Button(id='button-1', className='fullwidth', n_clicks=0, children='COF'),
+                        html.Button(id='button-2', className='fullwidth', n_clicks=0, children='MSFT'),
+                        html.Button(id='button-3', className='fullwidth', n_clicks=0, children='AAPL'),
+                        html.Button(id='button-4', className='fullwidth', n_clicks=0, children='AMZN'),
+                        html.Button(id='button-5', className='fullwidth', n_clicks=0, children='GOOG'),
+                        html.Button(id='button-6', className='fullwidth', n_clicks=0, children='FB'),
+                        html.Button(id='button-7', className='fullwidth', n_clicks=0, children='INTC'),
+                        html.Button(id='button-8', className='fullwidth', n_clicks=0, children='CSCO'),
+                        html.Button(id='button-9', className='fullwidth', n_clicks=0, children='CMCSA'),
+                        html.Button(id='button-10', className='fullwidth', n_clicks=0, children='PEP'),
+                        html.Button(id='button-11', className='fullwidth', n_clicks=0, children='NFLX'),
+                        html.Button(id='button-12', className='fullwidth', n_clicks=0, children='ADBE'),
+                        html.Button(id='button-13', className='fullwidth', n_clicks=0, children='AMGN'),
+                        html.Button(id='button-14', className='fullwidth', n_clicks=0, children='SBUX'),
+                        html.Button(id='button-15', className='fullwidth', n_clicks=0, children='BRK.B'),
+                        html.Button(id='button-16', className='fullwidth', n_clicks=0, children='MU'),
                         html.Button(id='button-17', className='fullwidth', n_clicks=0, children='NVDA'),
-                        html.Button(id='button-18', className='fullwidth', n_clicks=0, children='AMD'),
+                        html.Button(id='button-18', className='fullwidth', n_clicks=0, children='DATA'),
                     ],)
             ],
             style={
@@ -167,10 +201,41 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
     ]
 )
 
+import iexfinance.stocks as iex
+import re
+
+def informationMap(ticker):
+    '''
+    Input: Ticker (ie TSLA)
+    Output: A list of tuples, that contain all the basic informaiton of the stock.
+    '''
+    stock = iex.Stock(ticker)
+    financials = ['reportDate','totalRevenue', 'grossProfit', 'currentAssets']
+    infoMap = []
+    infoMap.append(('Company Name', stock.get_company_name()))
+    infoMap.append(('Sector', stock.get_sector()))
+    infoMap.append(('Market Cap','$'+str(stock.get_market_cap())))
+    infoMap.append(('Volume',(stock.get_market_cap())))
+    infoMap.append(('Most Recent EPS',stock.get_latest_eps() ))
+    for metric in financials:
+        if(metric == 'reportDate'):
+            infoMap.append((convert(metric),' '+str(stock.get_financials()[0][metric])))
+        else:
+            infoMap.append((convert(metric),' $'+str(stock.get_financials()[0][metric])))
+
+    infoMap.append(('Beta', stock.get_beta()))
+    return infoMap
+
+def convert(name):
+    '''
+    Receives a name in came case, then returns the name in normal "Title" Case.
+    '''
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1 \2', name)
+    return re.sub('([a-z0-9])([A-Z])', r'\1 \2', s1).lower().title()
+
 from dash.dependencies import Input, Output
 @app.callback(Output('prices', 'figure'),
               [Input('dropdown', 'value')])
-
 def update_graph(selected_dropdown_value):
     dff = DATAFRAME[MAP[selected_dropdown_value]]
     return {
@@ -210,7 +275,6 @@ def update_graph(selected_dropdown_value):
 #callback for interacting with news
 @app.callback(Output('news', component_property='children'),
               [Input('dropdown', 'value')])
-
 def update_news(selected_dropdown_value):
     url = ('https://newsapi.org/v2/everything?'
        'q=' + selected_dropdown_value + '&'
@@ -222,8 +286,54 @@ def update_news(selected_dropdown_value):
     df = pd.DataFrame(df[["title","url"]])
     return generate_news_table(df)
 
-def update_output_div(input_value):
-    return 'You\'ve entered "{}"'.format(input_value)
+# callback for company name
+@app.callback(Output('a1', component_property='children'),
+              [Input('dropdown', 'value')])
+def update_a1(selected_dropdown_value):
+    info = informationMap(MAP[selected_dropdown_value])
+    return info[0][0]+ ": " + info[0][1]
+
+# callback for company sector
+@app.callback(Output('a2', component_property='children'),
+              [Input('dropdown', 'value')])
+def update_a2(selected_dropdown_value):
+    info = informationMap(MAP[selected_dropdown_value])
+    return info[1][0]+ ": " + info[1][1]
+
+# callback for market cap
+@app.callback(Output('a3', component_property='children'),
+              [Input('dropdown', 'value')])
+def update_a3(selected_dropdown_value):
+    info = informationMap(MAP[selected_dropdown_value])
+    return info[2][0]+ ": " + info[2][1]
+
+# callback for report date
+@app.callback(Output('a6', component_property='children'),
+              [Input('dropdown', 'value')])
+def update_a6(selected_dropdown_value):
+    info = informationMap(MAP[selected_dropdown_value])
+    return info[5][0]+ ": " + info[5][1]
+
+# callback for total revenue
+@app.callback(Output('a7', component_property='children'),
+              [Input('dropdown', 'value')])
+def update_a7(selected_dropdown_value):
+    info = informationMap(MAP[selected_dropdown_value])
+    return info[6][0]+ ": " + info[6][1]
+
+# callback for gross profit
+@app.callback(Output('a8', component_property='children'),
+              [Input('dropdown', 'value')])
+def update_a8(selected_dropdown_value):
+    info = informationMap(MAP[selected_dropdown_value])
+    return info[7][0]+ ": " + info[7][1]
+
+# callback for current assets
+@app.callback(Output('a9', component_property='children'),
+              [Input('dropdown', 'value')])
+def update_a9(selected_dropdown_value):
+    info = informationMap(MAP[selected_dropdown_value])
+    return info[8][0]+ ": " + info[8][1]
 
 if __name__ == '__main__':
     app.run_server(debug=True)
