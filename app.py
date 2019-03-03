@@ -69,19 +69,25 @@ DATAFRAME = pd.read_csv('SP500_price.csv')
 NAMES = pd.read_csv('constituents.csv')['Name']
 LABELS = DATAFRAME.columns.values.tolist()[1:]
 REGTEXT = open('regressionText.txt', 'r').readlines()
+PREDICTIONS = pd.read_csv('predictiondat.csv')
 
 def regressionText(line):
     return REGTEXT[line-1]
 
-def label_maker(LABELS, NAMES):
+def label_maker(LABELS, NAMES, PREDICTIONS):
     options = []
     map1 = {}
+    map2 = {}
+    map3 = {}
     for i in range(0, len(LABELS)):
         options.append({'label': NAMES[i], 'value': NAMES[i]})
         map1[NAMES[i]] = LABELS[i]
-    return options, map1
+        if i < 20:
+            map2[LABELS[i]] = PREDICTIONS['LM'][i]
+            map3[LABELS[i]] = PREDICTIONS['RFM'][i]
+    return options, map1, map2, map3
 
-LABELS, MAP = label_maker(LABELS, NAMES)
+LABELS, MAP, LM, RF = label_maker(LABELS, NAMES, PREDICTIONS)
 
 app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
     #left column
@@ -198,6 +204,16 @@ app.layout = html.Div(style={'backgroundColor': "#1a2d46"}, children=[
                 ], className='regression', style={
                     'vertical-align': 'middle'
                 }),
+                html.Article(id='a10', children="Scarab's Linear Model Prediction: ", style={
+                    'color': 'white',
+                    'fontWeight': 'bold',
+                    'fontSize': 16
+                }),
+                html.Article(id='a11', children="Scarab's Random Forest Prediction: ", style={
+                    'color': 'white',
+                    'fontWeight': 'bold',
+                    'fontSize': 16
+                })
             ],
             style={
                 "backgroundColor": "#1a2d46",
@@ -345,6 +361,24 @@ def update_a8(selected_dropdown_value):
 def update_a9(selected_dropdown_value):
     info = informationMap(MAP[selected_dropdown_value])
     return info[8][0]+ ": " + info[8][1]
+
+# callback for LM
+@app.callback(Output('a10', component_property='children'),
+              [Input('dropdown', 'value')])
+def update_a10(selected_dropdown_value):
+    try:
+        return "Scarab's Linear Model Prediction: $" + str(LM[MAP[selected_dropdown_value]].round(decimals=2))
+    except:
+        "Scarab's Linear Model Prediction: UNAVAILABLE"
+
+# callback for LM
+@app.callback(Output('a11', component_property='children'),
+              [Input('dropdown', 'value')])
+def update_a11(selected_dropdown_value):
+    try:
+        return "Scarab's Random Forest Prediction: $" + str(RF[MAP[selected_dropdown_value]].round(decimals=2))
+    except:
+        return "Scarab's Predictions: UNAVAILABLE"
 
 if __name__ == '__main__':
     app.run_server(debug=True)
