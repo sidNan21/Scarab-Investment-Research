@@ -25,7 +25,7 @@ def get_news(company):
     url = ('https://newsapi.org/v2/everything?'
        'q=' + company + '&'
        'language=en&'
-       'apiKey=***REMOVED***')
+       'apiKey=REMOVED')
     r = requests.get(url)
     json_data = r.json()["articles"]
     df = pd.DataFrame(json_data)
@@ -310,7 +310,7 @@ def update_news(selected_dropdown_value):
     url = ('https://newsapi.org/v2/everything?'
        'q=' + selected_dropdown_value + '&'
        'language=en&'
-       'apiKey=***REMOVED***')
+       'apiKey=REMOVED')
     r = requests.get(url)
     json_data = r.json()["articles"]
     df = pd.DataFrame(json_data)
